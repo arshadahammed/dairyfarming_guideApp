@@ -115,7 +115,7 @@ class _AccountPageState extends State<AccountPage> {
             ),
             child: Column(children: [
               SettingItem(
-                title: "Setting",
+                title: "Share to your friends",
                 leadingIcon: "assets/icons/setting.svg",
                 bgIconColor: blue,
                 onTap: () {},
@@ -128,8 +128,8 @@ class _AccountPageState extends State<AccountPage> {
                 ),
               ),
               SettingItem(
-                title: "Payment",
-                leadingIcon: "assets/icons/wallet.svg",
+                title: "Rate us",
+                leadingIcon: "assets/icons/star.svg",
                 bgIconColor: green,
                 onTap: () {},
               ),
@@ -167,7 +167,7 @@ class _AccountPageState extends State<AccountPage> {
             ),
             child: Column(children: [
               SettingItem(
-                title: "Notification",
+                title: "Contact Us",
                 leadingIcon: "assets/icons/bell.svg",
                 bgIconColor: purple,
                 onTap: () {},

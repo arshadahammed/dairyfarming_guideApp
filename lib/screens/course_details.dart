@@ -9,6 +9,7 @@ import 'package:dairyfarm_guide/widgets/custom_image.dart';
 import 'package:dairyfarm_guide/widgets/lesson_item.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CourseDetailPage extends StatefulWidget {
   final Courses data;
@@ -22,7 +23,8 @@ class _CourseDetailPageState extends State<CourseDetailPage>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
   late Courses courseData;
-
+  List<String> _favoriteIds = [];
+  bool _isFavorite = false;
   @override
   void initState() {
     super.initState();
@@ -159,11 +161,13 @@ class _CourseDetailPageState extends State<CourseDetailPage>
                 fontSize: 20, fontWeight: FontWeight.w500, color: textColor),
           ),
           BookmarkBox(
-            isBookmarked: courseData.is_favorited,
-            onTap: () {
+            isBookmarked: _isFavorite,
+            onTap: () async {
               setState(() {
                 courseData.is_favorited = !courseData.is_favorited;
+                _isFavorite = !_isFavorite;
               });
+              await _updateFavorites();
             },
           ),
         ]),
@@ -292,5 +296,25 @@ class _CourseDetailPageState extends State<CourseDetailPage>
         ],
       ),
     );
+  }
+
+  Future<void> _updateFavorites() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> favoriteIds = prefs.getStringList('favoriteIds') ?? [];
+    setState(() {
+      if (_favoriteIds.contains(widget.data.id)) {
+        print("Id already exist");
+        return;
+      }
+      if (_isFavorite) {
+        favoriteIds.add(widget.data.id);
+        print("After added : ${favoriteIds.length}");
+      } else {
+        favoriteIds.remove(widget.data.id);
+        print("After removed : ${favoriteIds.length}");
+      }
+    });
+
+    await prefs.setStringList('favoriteIds', favoriteIds);
   }
 }

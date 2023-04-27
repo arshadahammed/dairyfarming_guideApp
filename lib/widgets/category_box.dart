@@ -1,3 +1,4 @@
+import 'package:dairyfarm_guide/models/categories.dart';
 import 'package:dairyfarm_guide/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,7 +11,7 @@ class CategoryBox extends StatelessWidget {
       this.onTap,
       this.selectedColor = actionColor})
       : super(key: key);
-  final data;
+  final MainCategories data;
   final Color selectedColor;
   final bool isSelected;
   final GestureTapCallback? onTap;
@@ -37,16 +38,16 @@ class CategoryBox extends StatelessWidget {
                   ],
                   shape: BoxShape.circle),
               child: SvgPicture.asset(
-                data["icon"],
+                data.svg,
                 color: isSelected ? selectedColor : textColor,
-                width: 30,
-                height: 30,
+                width: 40,
+                height: 40,
               )),
           SizedBox(
             height: 10,
           ),
           Text(
-            data["name"],
+            data.name,
             maxLines: 1,
             overflow: TextOverflow.fade,
             style: TextStyle(color: textColor, fontWeight: FontWeight.w500),

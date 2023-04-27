@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dairyfarm_guide/models/course_details.dart';
 import 'package:dairyfarm_guide/theme/color.dart';
 import 'package:dairyfarm_guide/widgets/bookmark_box.dart';
 
@@ -8,9 +9,9 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CourseItem extends StatelessWidget {
-  final data;
+  final Courses data;
   final GestureTapCallback? onBookmark;
-  const CourseItem({super.key, this.data, required this.onBookmark});
+  const CourseItem({super.key, required this.data, required this.onBookmark});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,7 @@ class CourseItem extends StatelessWidget {
                       fit: BoxFit.cover,
                     )),
               ),
-              imageUrl: data["image"],
+              imageUrl: data.image,
             ),
           ),
           Positioned(
@@ -52,7 +53,7 @@ class CourseItem extends StatelessWidget {
             right: 15,
             child: BookmarkBox(
               onTap: onBookmark,
-              isBookmarked: data["is_favorited"],
+              isBookmarked: data.is_favorited,
             ),
           ),
           Positioned(
@@ -63,7 +64,7 @@ class CourseItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      data["name"],
+                      data.name,
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
@@ -74,13 +75,13 @@ class CourseItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         getAttributes(
-                            Icons.sell_outlined, data["price"], labelColor),
+                            Icons.sell_outlined, data.price, labelColor),
                         getAttributes(Icons.play_circle_fill_outlined,
-                            data["session"], labelColor),
-                        getAttributes(Icons.schedule_outlined, data["duration"],
-                            labelColor),
+                            data.session, labelColor),
                         getAttributes(
-                            Icons.star, data["review"].toString(), yellow),
+                            Icons.schedule_outlined, data.duration, labelColor),
+                        getAttributes(
+                            Icons.star, data.review.toString(), yellow),
                       ],
                     )
                   ],

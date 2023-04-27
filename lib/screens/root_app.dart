@@ -1,6 +1,7 @@
 import 'package:dairyfarm_guide/screens/account.dart';
 import 'package:dairyfarm_guide/screens/chat.dart';
 import 'package:dairyfarm_guide/screens/explore.dart';
+import 'package:dairyfarm_guide/screens/favourite_list.dart';
 import 'package:dairyfarm_guide/theme/color.dart';
 import 'package:dairyfarm_guide/utils/constant.dart';
 import 'package:dairyfarm_guide/widgets/bottombar_item.dart';
@@ -28,14 +29,9 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
       "page": ExplorePage(),
     },
     {
-      "icon": "assets/icons/play.svg",
-      "active_icon": "assets/icons/play.svg",
-      "page": Container(),
-    },
-    {
-      "icon": "assets/icons/chat.svg",
-      "active_icon": "assets/icons/chat.svg",
-      "page": ChatPage(),
+      "icon": "assets/icons/bookmark.svg",
+      "active_icon": "assets/icons/bookmark.svg",
+      "page": FavouriteList(),
     },
     {
       "icon": "assets/icons/profile.svg",

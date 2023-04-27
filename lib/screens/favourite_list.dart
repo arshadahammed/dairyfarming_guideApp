@@ -6,15 +6,38 @@ import 'package:dairyfarm_guide/widgets/category_items.dart';
 import 'package:dairyfarm_guide/widgets/courses_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class ExplorePage extends StatefulWidget {
-  const ExplorePage({super.key});
+class FavouriteList extends StatefulWidget {
+  const FavouriteList({super.key});
 
   @override
-  State<ExplorePage> createState() => _ExplorePageState();
+  State<FavouriteList> createState() => _FavouriteListState();
 }
 
-class _ExplorePageState extends State<ExplorePage> {
+class _FavouriteListState extends State<FavouriteList> {
+  List<String> _favoriteIds = [];
+  List<Courses> favoriteCourses = [];
+  bool isListEmpty = false;
+
+  Future<void> _getFavorites() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    _favoriteIds = prefs.getStringList('favoriteIds') ?? [];
+    print("_favoriteIds length = ${_favoriteIds.length}");
+    setState(() {
+      favoriteCourses = allCourses
+          .where((course) => _favoriteIds.contains(course.id))
+          .toList();
+      print("_favoriteIds length = ${favoriteCourses.length}");
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getFavorites();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +65,7 @@ class _ExplorePageState extends State<ExplorePage> {
       child: Row(
         children: const [
           Text(
-            "Explore All Courses",
+            "Your Favourite Courses",
             style: TextStyle(
                 color: textColor, fontWeight: FontWeight.w600, fontSize: 18),
           ),
@@ -141,7 +164,7 @@ class _ExplorePageState extends State<ExplorePage> {
                         )));
               },
               child: CourseItem(
-                data: allCourses[index],
+                data: favoriteCourses[index],
                 onBookmark: () {
                   setState(() {
                     allCourses[index].is_favorited =
@@ -151,7 +174,26 @@ class _ExplorePageState extends State<ExplorePage> {
               ),
             ));
       },
-      childCount: allCourses.length,
+      childCount: favoriteCourses.length,
     );
   }
+
+  //   getCourses() {
+  //   return SliverChildBuilderDelegate(
+  //     (context, index) {
+  //       return Padding(
+  //           padding: const EdgeInsets.only(top: 5, left: 15, right: 15),
+  //           child: CourseItem(
+  //             data: favoriteCourses[index],
+  //             onBookmark: () {
+  //               setState(() {
+  //                 allCourses[index].is_favorited =
+  //                     !allCourses[index].is_favorited;
+  //               });
+  //             },
+  //           ));
+  //     },
+  //     childCount: favoriteCourses.length,
+  //   );
+  // }
 }

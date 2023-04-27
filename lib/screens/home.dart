@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dairyfarm_guide/models/categories.dart';
 import 'package:dairyfarm_guide/models/course_details.dart';
+import 'package:dairyfarm_guide/screens/categories/category_details.dart';
 import 'package:dairyfarm_guide/screens/course_details.dart';
 import 'package:dairyfarm_guide/theme/color.dart';
 import 'package:dairyfarm_guide/utils/data.dart';
@@ -131,16 +133,20 @@ class _HomePageState extends State<HomePage> {
       scrollDirection: Axis.horizontal,
       child: Row(
           children: List.generate(
-              categories.length,
+              allCategories.length,
               (index) => Padding(
                   padding: const EdgeInsets.only(right: 15),
                   child: CategoryBox(
                     selectedColor: Colors.white,
-                    data: categories[index],
+                    data: allCategories[index],
                     onTap: () {
                       setState(() {
                         selectedCollection = index;
                       });
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => CategoryDetailsPage(
+                                data: allCategories[index],
+                              )));
                     },
                   )))),
     );
@@ -171,14 +177,22 @@ class _HomePageState extends State<HomePage> {
       padding: EdgeInsets.fromLTRB(15, 5, 0, 5),
       scrollDirection: Axis.horizontal,
       child: Row(
-          children: List.generate(
-              recommends.length,
-              (index) => Padding(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: RecommendItem(
-                    data: recommends[index],
-                    onTap: () {},
-                  )))),
+          children: List.generate(allCourses.length, (index) {
+        if (allCourses[index].is_recommented) {
+          return Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: RecommendItem(
+                data: allCourses[index],
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => CourseDetailPage(
+                            data: allCourses[index],
+                          )));
+                },
+              ));
+        }
+        return const SizedBox.shrink();
+      })),
     );
   }
 }

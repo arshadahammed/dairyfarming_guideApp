@@ -1,10 +1,11 @@
+import 'package:dairyfarm_guide/models/course_details.dart';
 import 'package:dairyfarm_guide/theme/color.dart';
 import 'package:dairyfarm_guide/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 
 class RecommendItem extends StatelessWidget {
   RecommendItem({Key? key, required this.data, this.onTap}) : super(key: key);
-  final data;
+  final Courses data;
   final GestureTapCallback? onTap;
 
   @override
@@ -30,7 +31,7 @@ class RecommendItem extends StatelessWidget {
           child: Row(
             children: [
               CustomImage(
-                data["image"],
+                data.image,
                 radius: 15,
                 height: 80,
               ),
@@ -41,9 +42,9 @@ class RecommendItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    data["name"],
+                    data.name,
                     maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                    overflow: TextOverflow.clip,
                     style: TextStyle(
                         color: textColor,
                         fontSize: 16,
@@ -53,7 +54,7 @@ class RecommendItem extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    data["price"],
+                    data.price,
                     style: TextStyle(fontSize: 14, color: textColor),
                   ),
                   SizedBox(
@@ -70,7 +71,7 @@ class RecommendItem extends StatelessWidget {
                         width: 2,
                       ),
                       Text(
-                        data["duration"],
+                        data.duration,
                         style: TextStyle(fontSize: 12, color: labelColor),
                       ),
                       SizedBox(
@@ -85,7 +86,7 @@ class RecommendItem extends StatelessWidget {
                         width: 2,
                       ),
                       Text(
-                        data["review"],
+                        data.review,
                         style: TextStyle(fontSize: 12, color: labelColor),
                       )
                     ],
