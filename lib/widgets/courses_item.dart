@@ -7,14 +7,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class CourseItem extends StatelessWidget {
+class CourseItem extends StatefulWidget {
   final Courses data;
   final GestureTapCallback? onBookmark;
   const CourseItem({super.key, required this.data, required this.onBookmark});
 
   @override
+  State<CourseItem> createState() => _CourseItemState();
+}
+
+class _CourseItemState extends State<CourseItem> {
+  List<String> _favoriteIds = [];
+  //getfav
+  Future<void> _getFavorites() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _favoriteIds = prefs.getStringList('favoriteIds') ?? [];
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getFavorites();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    bool _isItemFavorite = _favoriteIds.contains(widget.data.id);
     return Container(
       width: 200,
       height: 290,
@@ -45,15 +67,15 @@ class CourseItem extends StatelessWidget {
                       fit: BoxFit.cover,
                     )),
               ),
-              imageUrl: data.image,
+              imageUrl: widget.data.image,
             ),
           ),
           Positioned(
             top: 175,
             right: 15,
             child: BookmarkBox(
-              onTap: onBookmark,
-              isBookmarked: data.is_favorited,
+              onTap: widget.onBookmark,
+              isBookmarked: _isItemFavorite,
             ),
           ),
           Positioned(
@@ -64,7 +86,7 @@ class CourseItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      data.name,
+                      widget.data.name,
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
@@ -75,13 +97,13 @@ class CourseItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         getAttributes(
-                            Icons.sell_outlined, data.price, labelColor),
+                            Icons.sell_outlined, widget.data.price, labelColor),
                         getAttributes(Icons.play_circle_fill_outlined,
-                            data.session, labelColor),
+                            widget.data.session, labelColor),
+                        getAttributes(Icons.schedule_outlined,
+                            widget.data.duration, labelColor),
                         getAttributes(
-                            Icons.schedule_outlined, data.duration, labelColor),
-                        getAttributes(
-                            Icons.star, data.review.toString(), yellow),
+                            Icons.star, widget.data.review.toString(), yellow),
                       ],
                     )
                   ],

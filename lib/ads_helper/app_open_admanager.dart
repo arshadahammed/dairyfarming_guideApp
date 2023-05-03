@@ -8,7 +8,7 @@ class AppOpenAdManager {
   /// Load an AppOpenAd.
   void loadAd() {
     AppOpenAd.load(
-      adUnitId: "ca-app-pub-3920036584338725/1459797962",
+      adUnitId: "ca-app-pub-3920036584338725/3870437913",
       orientation: AppOpenAd.orientationPortrait,
       request: const AdRequest(),
       adLoadCallback: AppOpenAdLoadCallback(

@@ -1,6 +1,7 @@
 var profile = {
   "name": "The Essence Of Dairy Farming",
-  "image": "assets/png/splash.png",
+  "image":
+      "https://cdn.pixabay.com/photo/2013/10/31/13/42/cows-203460_960_720.jpg",
   "email": "seyfertsoftndtech@gmail.com"
 };
 

@@ -1,5 +1,7 @@
+import 'package:dairyfarm_guide/ads_helper/ads_helper.dart';
 import 'package:dairyfarm_guide/theme/color.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class YoutubeVideoScreen extends StatefulWidget {
@@ -17,8 +19,8 @@ class _YoutubeVideoScreenState extends State<YoutubeVideoScreen> {
   late YoutubePlayerController _controller;
 
   //ads section
-  // NativeAd? _nativeAd;
-  // bool isNativeAdLoaded = false;
+  NativeAd? _nativeAd;
+  bool isNativeAdLoaded = false;
 
   // late BannerAd _bottomBannerAd;
 
@@ -27,7 +29,7 @@ class _YoutubeVideoScreenState extends State<YoutubeVideoScreen> {
   @override
   void initState() {
     super.initState();
-    // loadNativeAd();
+    loadNativeAd();
     // _createBottomBannerAd();
     final videoID = YoutubePlayer.convertUrlToId(widget.youtubeLink);
     _controller = YoutubePlayerController(
@@ -53,27 +55,27 @@ class _YoutubeVideoScreenState extends State<YoutubeVideoScreen> {
   // }
 
   //loadNative Ad
-  // void loadNativeAd() {
-  //   _nativeAd = NativeAd(
-  //     adUnitId: AdHelper.nativeAdUnitId,
-  //     factoryId: "listTileMedium",
-  //     listener: NativeAdListener(onAdLoaded: (ad) {
-  //       setState(() {
-  //         isNativeAdLoaded = true;
-  //       });
-  //     }, onAdFailedToLoad: (ad, error) {
-  //       _nativeAd!.dispose();
-  //     }),
-  //     request: const AdRequest(),
-  //   );
-  //   _nativeAd!.load();
-  // }
+  void loadNativeAd() {
+    _nativeAd = NativeAd(
+      adUnitId: AdHelper.nativeAdUnitId,
+      factoryId: "listTileMedium",
+      listener: NativeAdListener(onAdLoaded: (ad) {
+        setState(() {
+          isNativeAdLoaded = true;
+        });
+      }, onAdFailedToLoad: (ad, error) {
+        _nativeAd!.dispose();
+      }),
+      request: const AdRequest(),
+    );
+    _nativeAd!.load();
+  }
 
   @override
   void dispose() {
     super.dispose();
     // _bottomBannerAd.dispose();
-    // _nativeAd!.dispose();
+    _nativeAd!.dispose();
     // _interstitialAd?.dispose();
   }
 
@@ -134,17 +136,17 @@ class _YoutubeVideoScreenState extends State<YoutubeVideoScreen> {
             ],
           ),
           const SizedBox(height: 25),
-          // isNativeAdLoaded
-          //     ? Container(
-          //         decoration: const BoxDecoration(
-          //           color: Colors.white,
-          //         ),
-          //         height: 265,
-          //         child: AdWidget(
-          //           ad: _nativeAd!,
-          //         ),
-          //       )
-          //     : const SizedBox(),
+          isNativeAdLoaded
+              ? Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  height: 265,
+                  child: AdWidget(
+                    ad: _nativeAd!,
+                  ),
+                )
+              : const SizedBox(),
         ],
       ),
       // bottomNavigationBar: _isBottomBannerAdLoaded

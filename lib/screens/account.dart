@@ -1,9 +1,18 @@
+import 'package:dairyfarm_guide/ads_helper/ads_helper.dart';
+import 'package:dairyfarm_guide/screens/accounts/contact_us.dart';
+import 'package:dairyfarm_guide/screens/accounts/dummyfav.dart';
+import 'package:dairyfarm_guide/screens/accounts/privacy_policy.dart';
+import 'package:dairyfarm_guide/screens/favourite_list.dart';
 import 'package:dairyfarm_guide/theme/color.dart';
 import 'package:dairyfarm_guide/utils/data.dart';
 import 'package:dairyfarm_guide/widgets/custom_image.dart';
 import 'package:dairyfarm_guide/widgets/setting_box.dart';
 import 'package:dairyfarm_guide/widgets/setting_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+
+const int maxFailedLoadAttempts = 3;
 
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -13,6 +22,57 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
+  //ads
+  int _interstitialLoadAttempts = 0;
+
+  InterstitialAd? _interstitialAd;
+
+  //intrestial
+  void _createInterstitialAd() {
+    InterstitialAd.load(
+        adUnitId: AdHelper.interstitialAdUnitId,
+        request: const AdRequest(),
+        adLoadCallback:
+            InterstitialAdLoadCallback(onAdLoaded: (InterstitialAd ad) {
+          _interstitialAd = ad;
+          _interstitialLoadAttempts = 0;
+        }, onAdFailedToLoad: (LoadAdError error) {
+          _interstitialLoadAttempts += 1;
+          _interstitialAd = null;
+          if (_interstitialLoadAttempts <= maxFailedLoadAttempts) {
+            _createInterstitialAd();
+          }
+        }));
+  }
+
+  void _showInterstitialAd() {
+    if (_interstitialAd != null) {
+      _interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
+          onAdDismissedFullScreenContent: (InterstitialAd ad) {
+        ad.dispose();
+        _createInterstitialAd();
+      }, onAdFailedToShowFullScreenContent: (InterstitialAd ad, AdError error) {
+        ad.dispose();
+        _createInterstitialAd();
+      });
+      _interstitialAd!.show();
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _createInterstitialAd();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _interstitialAd?.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -52,7 +112,7 @@ class _AccountPageState extends State<AccountPage> {
             children: [
               CustomImage(
                 profile["image"]!,
-                width: 70,
+                width: 100,
                 height: 70,
                 radius: 20,
               ),
@@ -74,7 +134,7 @@ class _AccountPageState extends State<AccountPage> {
               children: [
                 Expanded(
                     child: SettingBox(
-                  title: "12 courses",
+                  title: "9 courses",
                   icon: "assets/icons/work.svg",
                 )),
                 SizedBox(
@@ -116,7 +176,7 @@ class _AccountPageState extends State<AccountPage> {
             child: Column(children: [
               SettingItem(
                 title: "Share to your friends",
-                leadingIcon: "assets/icons/setting.svg",
+                leadingIcon: "assets/icons/share.svg",
                 bgIconColor: blue,
                 onTap: () {},
               ),
@@ -144,7 +204,10 @@ class _AccountPageState extends State<AccountPage> {
                 title: "Bookmark",
                 leadingIcon: "assets/icons/bookmark.svg",
                 bgIconColor: primary,
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => FavouriteList()));
+                },
               ),
             ]),
           ),
@@ -168,9 +231,12 @@ class _AccountPageState extends State<AccountPage> {
             child: Column(children: [
               SettingItem(
                 title: "Contact Us",
-                leadingIcon: "assets/icons/bell.svg",
+                leadingIcon: "assets/icons/contact.svg",
                 bgIconColor: purple,
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Contactus()));
+                },
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 45),
@@ -183,7 +249,10 @@ class _AccountPageState extends State<AccountPage> {
                 title: "Privacy",
                 leadingIcon: "assets/icons/shield.svg",
                 bgIconColor: orange,
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => PrivacyPolicy()));
+                },
               ),
             ]),
           ),
@@ -206,10 +275,13 @@ class _AccountPageState extends State<AccountPage> {
             ),
             child: Column(children: [
               SettingItem(
-                title: "Log Out",
+                title: "Exit",
                 leadingIcon: "assets/icons/logout.svg",
                 bgIconColor: darker,
-                onTap: () {},
+                onTap: () {
+                  _showInterstitialAd();
+                  SystemNavigator.pop();
+                },
               ),
             ]),
           ),

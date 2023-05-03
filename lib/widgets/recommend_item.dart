@@ -35,7 +35,7 @@ class RecommendItem extends StatelessWidget {
                 radius: 15,
                 height: 80,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               Column(
@@ -44,10 +44,10 @@ class RecommendItem extends StatelessWidget {
                   Text(
                     data.name,
                     maxLines: 1,
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
                         color: textColor,
-                        fontSize: 16,
+                        fontSize: 14,
                         fontWeight: FontWeight.w600),
                   ),
                   SizedBox(

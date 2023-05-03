@@ -1,3 +1,4 @@
+import 'package:dairyfarm_guide/ads_helper/ads_helper.dart';
 import 'package:dairyfarm_guide/models/course_details.dart';
 import 'package:dairyfarm_guide/screens/course_details.dart';
 import 'package:dairyfarm_guide/theme/color.dart';
@@ -6,6 +7,8 @@ import 'package:dairyfarm_guide/widgets/category_items.dart';
 import 'package:dairyfarm_guide/widgets/courses_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ExplorePage extends StatefulWidget {
   const ExplorePage({super.key});
@@ -15,6 +18,59 @@ class ExplorePage extends StatefulWidget {
 }
 
 class _ExplorePageState extends State<ExplorePage> {
+  //ads
+  final _inlineAdIndex = 1;
+  late BannerAd _inlineBannerAd;
+  bool _isInlineBannerAdLoaded = false;
+
+  //inline Ad
+  void _createInlineBannerAd() {
+    _inlineBannerAd = BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
+      size: AdSize.mediumRectangle,
+      request: const AdRequest(),
+      listener: BannerAdListener(
+        onAdLoaded: (_) {
+          setState(() {
+            _isInlineBannerAdLoaded = true;
+          });
+        },
+        onAdFailedToLoad: (ad, error) {
+          ad.dispose();
+        },
+      ),
+    );
+    _inlineBannerAd.load();
+  }
+
+  int _getListViewItemIndex(int index) {
+    if (index >= _inlineAdIndex && _isInlineBannerAdLoaded) {
+      return index - 1;
+    }
+    return index;
+  }
+
+  List<String> _favoriteIds = [];
+  //getfav
+  Future<void> _getFavorites() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _favoriteIds = prefs.getStringList('favoriteIds') ?? [];
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _createInlineBannerAd();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _inlineBannerAd.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -131,17 +187,37 @@ class _ExplorePageState extends State<ExplorePage> {
   getCourses() {
     return SliverChildBuilderDelegate(
       (context, index) {
+        if (_isInlineBannerAdLoaded && index == _inlineAdIndex) {
+          return Container(
+            padding: const EdgeInsets.only(
+              bottom: 10,
+            ),
+            width: _inlineBannerAd.size.width.toDouble(),
+            height: _inlineBannerAd.size.height.toDouble(),
+            child: AdWidget(ad: _inlineBannerAd),
+          );
+        }
+        if (_isInlineBannerAdLoaded && index == _inlineAdIndex) {
+          return Container(
+            padding: const EdgeInsets.only(
+              bottom: 10,
+            ),
+            width: _inlineBannerAd.size.width.toDouble(),
+            height: _inlineBannerAd.size.height.toDouble(),
+            child: AdWidget(ad: _inlineBannerAd),
+          );
+        }
         return Padding(
             padding: const EdgeInsets.only(top: 5, left: 15, right: 15),
             child: GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => CourseDetailPage(
-                          data: allCourses[index],
+                          data: allCourses[_getListViewItemIndex(index)],
                         )));
               },
               child: CourseItem(
-                data: allCourses[index],
+                data: allCourses[_getListViewItemIndex(index)],
                 onBookmark: () {
                   setState(() {
                     allCourses[index].is_favorited =
@@ -151,7 +227,7 @@ class _ExplorePageState extends State<ExplorePage> {
               ),
             ));
       },
-      childCount: allCourses.length,
+      childCount: allCourses.length + (_isInlineBannerAdLoaded ? 1 : 0),
     );
   }
 }

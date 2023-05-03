@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dairyfarm_guide/models/categories.dart';
 import 'package:dairyfarm_guide/models/course_details.dart';
@@ -10,6 +12,7 @@ import 'package:dairyfarm_guide/widgets/feature_item.dart';
 import 'package:dairyfarm_guide/widgets/notification_box.dart';
 import 'package:dairyfarm_guide/widgets/recommend_item.dart';
 import 'package:flutter/material.dart';
+import 'package:upgrader/upgrader.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,22 +26,32 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: appBgColor,
-        body: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              backgroundColor: appBarColor,
-              pinned: true,
-              snap: true,
-              floating: true,
-              title: getAppBar(),
-            ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) => buildBody(),
-                childCount: 1,
+        body: UpgradeAlert(
+          upgrader: Upgrader(
+            shouldPopScope: () => true,
+            canDismissDialog: true,
+            durationUntilAlertAgain: const Duration(days: 1),
+            dialogStyle: Platform.isIOS
+                ? UpgradeDialogStyle.cupertino
+                : UpgradeDialogStyle.material,
+          ),
+          child: CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                backgroundColor: appBarColor,
+                pinned: true,
+                snap: true,
+                floating: true,
+                title: getAppBar(),
               ),
-            )
-          ],
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) => buildBody(),
+                  childCount: 1,
+                ),
+              )
+            ],
+          ),
         ));
   }
 
@@ -62,7 +75,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 5,
               ),
-              Text("Good Morning!",
+              Text("Welcome!",
                   style: TextStyle(
                     color: textColor,
                     fontWeight: FontWeight.w500,
@@ -70,10 +83,10 @@ class _HomePageState extends State<HomePage> {
                   )),
             ],
           )),
-          NotificationBox(
-            notifiedNumber: 1,
-            onTap: () {},
-          )
+          // NotificationBox(
+          //   notifiedNumber: 1,
+          //   onTap: () {},
+          // )
         ],
       ),
     );

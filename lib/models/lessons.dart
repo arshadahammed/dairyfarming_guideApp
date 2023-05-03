@@ -228,3 +228,123 @@ List<Lessons> mustKnow = [
     video_url: "https://www.youtube.com/watch?v=HFFQTg-Aefs",
   ),
 ];
+
+List<Lessons> theEssence = [
+  Lessons(
+    name: "Inside a Milking Parlor",
+    duration: "2 Minute",
+    video_url: "https://www.youtube.com/watch?v=OWTK89Ti9pg",
+  ),
+  Lessons(
+    name: "Managing Manure",
+    duration: "2 Minute",
+    video_url: "https://www.youtube.com/watch?v=5gaPJApQc0Q",
+  ),
+  Lessons(
+    name: "Protecting the Environment",
+    duration: "3 Minute",
+    video_url: "https://www.youtube.com/watch?v=SsOg7rDJ0xA",
+  ),
+  Lessons(
+    name: "Technology for the Next Generation",
+    duration: "4 Minute",
+    video_url: "https://www.youtube.com/watch?v=6oPDpVAZmYM",
+  ),
+  Lessons(
+    name: "Virtual Dairy Farm Tour",
+    duration: "4 Minute",
+    video_url: "https://www.youtube.com/watch?v=LFN1OPbXLMo",
+  ),
+  Lessons(
+    name: "Modern Technology",
+    duration: "2 Minute",
+    video_url: "https://www.youtube.com/watch?v=banPCyn0jug",
+  ),
+  Lessons(
+    name: "Calf care",
+    duration: "2 Minute",
+    video_url: "https://www.youtube.com/watch?v=J6PQUzcJa9w",
+  ),
+  Lessons(
+    name: "Electronic Feed Pusher",
+    duration: "2 Minute",
+    video_url: "https://www.youtube.com/watch?v=vzNO9u7v80k",
+  ),
+  Lessons(
+    name: "Robotic Milking",
+    duration: "2 Minute",
+    video_url: "https://www.youtube.com/watch?v=0dTJs6HUxrU",
+  ),
+  Lessons(
+    name: "Milking Cows",
+    duration: "2 Minute",
+    video_url: "https://www.youtube.com/watch?v=RpiY8ZmTJsg",
+  ),
+  Lessons(
+    name: "Hoof Trimming",
+    duration: "2 Minute",
+    video_url: "https://www.youtube.com/watch?v=_Jun5U_qby8",
+  ),
+  Lessons(
+    name: "Dehorning",
+    duration: "2 Minute",
+    video_url: "https://www.youtube.com/watch?v=x0o37E9bHGQ",
+  ),
+];
+
+List<Lessons> dairyProducts = [
+  Lessons(
+    name: "Dairy Products from Farm to Table",
+    duration: "15 Minute",
+    video_url:
+        "https://www.youtube.com/watch?v=zS5vcS4R3RA&list=PLRSU6MK8yWUNIsixxQUnsf6S0ShuomrKI",
+  ),
+  Lessons(
+    name: "Dairy Products Judging",
+    duration: "30 Minute",
+    video_url:
+        "https://www.youtube.com/watch?v=eFkS7SnVHEc&list=PLRSU6MK8yWUNIsixxQUnsf6S0ShuomrKI&index=2",
+  ),
+  Lessons(
+    name: "Dairy Products Judging",
+    duration: "30 Minute",
+    video_url:
+        "https://www.youtube.com/watch?v=eFkS7SnVHEc&list=PLRSU6MK8yWUNIsixxQUnsf6S0ShuomrKI&index=2",
+  ),
+  Lessons(
+    name: "How Ice cream is made",
+    duration: "3 Minute",
+    video_url: "https://www.youtube.com/watch?v=PMPlAT-eCuY",
+  ),
+  Lessons(
+    name: "How To Brown Butter",
+    duration: "1 Minute",
+    video_url: "https://www.youtube.com/watch?v=wKYLsE58mf8",
+  ),
+  Lessons(
+    name: "How to Make Whipped Cream",
+    duration: "2 Minute",
+    video_url: "https://www.youtube.com/watch?v=ERTWu4Q9NMs",
+  ),
+  Lessons(
+    name: "cheese making",
+    duration: "8 Minute",
+    video_url:
+        "https://www.youtube.com/watch?v=fbSUvsgJgBs&list=PLVicI_rIohvgFXWO5ah4TtwmzKNr8llV4",
+  ),
+  Lessons(
+    name: "How Yogurt Is Made",
+    duration: "8 Minute",
+    video_url: "https://www.youtube.com/watch?v=BrA_-152whA",
+  ),
+  Lessons(
+    name: "Butter Making",
+    duration: "8 Minute",
+    video_url: "https://www.youtube.com/watch?v=VP54Pm33eJc",
+  ),
+  Lessons(
+    name: "Butter Making",
+    duration: "8 Minute",
+    video_url: "https://www.youtube.com/watch?v=VP54Pm33eJc",
+  ),
+];

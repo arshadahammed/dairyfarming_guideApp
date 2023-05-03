@@ -1,3 +1,4 @@
+import 'package:dairyfarm_guide/ads_helper/ads_helper.dart';
 import 'package:dairyfarm_guide/models/course_details.dart';
 import 'package:dairyfarm_guide/screens/all_lessons.dart';
 import 'package:dairyfarm_guide/screens/youtube_screen.dart';
@@ -8,8 +9,11 @@ import 'package:dairyfarm_guide/widgets/custom_button.dart';
 import 'package:dairyfarm_guide/widgets/custom_image.dart';
 import 'package:dairyfarm_guide/widgets/lesson_item.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:readmore/readmore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+const int maxFailedLoadAttempts = 3;
 
 class CourseDetailPage extends StatefulWidget {
   final Courses data;
@@ -25,11 +29,81 @@ class _CourseDetailPageState extends State<CourseDetailPage>
   late Courses courseData;
   List<String> _favoriteIds = [];
   bool _isFavorite = false;
+
+  //ads
+  int _interstitialLoadAttempts = 0;
+
+  InterstitialAd? _interstitialAd;
+
+  //ads section
+  NativeAd? _nativeAd;
+  bool isNativeAdLoaded = false;
+  //
+
+  //intrestial
+  void _createInterstitialAd() {
+    InterstitialAd.load(
+        adUnitId: AdHelper.interstitialAdUnitId,
+        request: const AdRequest(),
+        adLoadCallback:
+            InterstitialAdLoadCallback(onAdLoaded: (InterstitialAd ad) {
+          _interstitialAd = ad;
+          _interstitialLoadAttempts = 0;
+        }, onAdFailedToLoad: (LoadAdError error) {
+          _interstitialLoadAttempts += 1;
+          _interstitialAd = null;
+          if (_interstitialLoadAttempts <= maxFailedLoadAttempts) {
+            _createInterstitialAd();
+          }
+        }));
+  }
+
+  void _showInterstitialAd() {
+    if (_interstitialAd != null) {
+      _interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
+          onAdDismissedFullScreenContent: (InterstitialAd ad) {
+        ad.dispose();
+        _createInterstitialAd();
+      }, onAdFailedToShowFullScreenContent: (InterstitialAd ad, AdError error) {
+        ad.dispose();
+        _createInterstitialAd();
+      });
+      _interstitialAd!.show();
+    }
+  }
+
+  void loadNativeAd() {
+    _nativeAd = NativeAd(
+      adUnitId: AdHelper.nativeAdUnitId,
+      factoryId: "listTileMedium",
+      listener: NativeAdListener(onAdLoaded: (ad) {
+        setState(() {
+          isNativeAdLoaded = true;
+        });
+      }, onAdFailedToLoad: (ad, error) {
+        _nativeAd!.dispose();
+      }),
+      request: const AdRequest(),
+    );
+    _nativeAd!.load();
+  }
+
   @override
   void initState() {
     super.initState();
+
     tabController = TabController(length: 2, vsync: this);
     courseData = widget.data;
+    loadNativeAd();
+    _createInterstitialAd();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _interstitialAd?.dispose();
+    _nativeAd!.dispose();
   }
 
   @override
@@ -84,6 +158,18 @@ class _CourseDetailPageState extends State<CourseDetailPage>
           const SizedBox(
             height: 20,
           ),
+          // const SizedBox(height: 5),
+          isNativeAdLoaded
+              ? Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  height: 265,
+                  child: AdWidget(
+                    ad: _nativeAd!,
+                  ),
+                )
+              : const SizedBox(),
           getTabBar(),
           getTabBarPages()
         ],
@@ -283,6 +369,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
             child: CustomButton(
               title: 'Go to Course',
               onTap: () {
+                _showInterstitialAd();
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => AllLessons(

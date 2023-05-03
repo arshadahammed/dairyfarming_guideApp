@@ -1,4 +1,6 @@
+import 'package:dairyfarm_guide/ads_helper/app_open_admanager.dart';
 import 'package:dairyfarm_guide/screens/home.dart';
+import 'package:dairyfarm_guide/screens/main_screen.dart';
 import 'package:dairyfarm_guide/screens/root_app.dart';
 import 'package:dairyfarm_guide/utils/constant.dart';
 import 'package:flutter/material.dart';
@@ -11,11 +13,11 @@ class OnBoard extends StatefulWidget {
 }
 
 class _OnBoardState extends State<OnBoard> {
-  // AppOpenAdManager appOpenAdManager = AppOpenAdManager();
+  AppOpenAdManager appOpenAdManager = AppOpenAdManager();
   @override
   void initState() {
     super.initState();
-    // appOpenAdManager.loadAd();
+    appOpenAdManager.loadAd();
   }
 
   @override
@@ -24,14 +26,14 @@ class _OnBoardState extends State<OnBoard> {
       body: Column(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.65,
+            height: MediaQuery.of(context).size.height * 0.72,
             decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage('assets/png/onboard.jpg'),
                     fit: BoxFit.cover)),
           ),
           Container(
-            height: MediaQuery.of(context).size.height * 0.35,
+            height: MediaQuery.of(context).size.height * 0.28,
             width: MediaQuery.of(context).size.width,
             color: grey.shade300,
             child: Padding(
@@ -40,7 +42,7 @@ class _OnBoardState extends State<OnBoard> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    'Do you want to start a dairy farm',
+                    'Are You Planing to start a dairy farm..???',
                     textAlign: TextAlign.center,
                     style: roboto.copyWith(
                         fontSize: 24, height: 1.5, color: black),
@@ -56,11 +58,11 @@ class _OnBoardState extends State<OnBoard> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      // appOpenAdManager.showAdIfAvailable();
+                      appOpenAdManager.showAdIfAvailable();
                       Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const RootApp()),
+                              builder: (context) => const HomeScreen()),
                           (route) => false);
                     },
                     child: Container(

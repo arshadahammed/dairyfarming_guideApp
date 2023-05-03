@@ -44,6 +44,8 @@ dependencies:
   shared_preferences: ^2.1.0
   google_mobile_ads: ^3.0.0
   google_fonts: ^4.0.3
+  bottom_navy_bar: ^6.0.0
+  upgrader: ^6.3.0
 
 dev_dependencies:
   flutter_test:

@@ -26,8 +26,8 @@ List<Courses> allCourses = [
     image:
         "https://images.unsplash.com/photo-1629313471551-ba2052384b9b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
     price: "Free",
-    duration: "7 Hours",
-    session: introLessons.length.toString(),
+    duration: "1 Hours",
+    session: "${introLessons.length.toString()}  Lessons",
     review: "4.5",
     description:
         " This course provides an overview of the history and evolution of dairy farming, introduces the modern dairy industry and its terminology and concepts, discusses the different types of dairy farms, and covers animal welfare and ethical considerations in dairy farming.",
@@ -41,8 +41,8 @@ List<Courses> allCourses = [
     image:
         "https://images.unsplash.com/photo-1596733430284-f7437764b1a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
     price: "Free",
-    duration: "7 Hours",
-    session: dairyBreeds.length.toString(),
+    duration: "2 Hours",
+    session: "${dairyBreeds.length.toString()}  Lessons",
     review: "4.2",
     description:
         " This course covers the different types of dairy cattle breeds and their characteristics, explains the selection criteria for dairy cattle, discusses genetic improvement and breeding strategies, and describes how to manage a dairy herd based on breed type.",
@@ -56,8 +56,8 @@ List<Courses> allCourses = [
     image:
         "https://images.unsplash.com/photo-1629313472434-cbbfdc2e1a5f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
     price: "Free",
-    duration: "7 Hours",
-    session: "${dairyNutrition.length.toString()} + Lessons",
+    duration: "1 Hours",
+    session: "${dairyNutrition.length.toString()}  Lessons",
     review: "4.5",
     description:
         "Dairy Nutrition: Feeding and Management - This course covers the nutritional requirements of dairy cattle, the different types of feed and how to formulate rations, feed management and delivery systems, and ways to optimize production efficiency through good nutrition.",
@@ -71,8 +71,8 @@ List<Courses> allCourses = [
     image:
         "https://images.unsplash.com/photo-1606262482954-f405e0946f4d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=875&q=80",
     price: "Free",
-    duration: "7 Hours",
-    session: "${diseaseManagement.length.toString()} + Lessons",
+    duration: "2 Hours",
+    session: "${diseaseManagement.length.toString()}  Lessons",
     review: "4.5",
     description:
         "Dairy Herd Health and Disease Management - This course covers the common diseases and ailments that affect dairy cattle, strategies for preventative health management, herd health management, record-keeping and data analysis for herd health, and animal welfare considerations in health management.",
@@ -86,8 +86,8 @@ List<Courses> allCourses = [
     image:
         "https://cdn.pixabay.com/photo/2018/06/05/12/25/milk-3455394_960_720.jpg",
     price: "Free",
-    duration: "7 Hours",
-    session: "${milkManagement.length.toString()} + Lessons",
+    duration: "1.5 Hours",
+    session: "${milkManagement.length.toString()}  Lessons",
     review: "4.5",
     description:
         "This course covers the factors that affect milk quality, testing methods for milk quality, microbiology and safety considerations, milk handling and storage best practices, and quality assurance and control programs.",
@@ -104,8 +104,8 @@ List<Courses> allCourses = [
     image:
         "https://images.unsplash.com/photo-1626561921730-200b9a3ecc95?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
     price: "Free",
-    duration: "7 Hours",
-    session: "${bussinessManagement.length.toString()} + Lessons",
+    duration: "2 Hours",
+    session: "${bussinessManagement.length.toString()}  Lessons",
     review: "4.5",
     description:
         "This course covers financial management and budgeting, profitability analysis, marketing and sales of dairy products, labor management and human resources, and risk management and insurance considerations.",
@@ -120,13 +120,45 @@ List<Courses> allCourses = [
     image:
         "https://images.unsplash.com/photo-1567879656049-f2265f23d8f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
     price: "Free",
-    duration: "7 Hours",
-    session: "${mustKnow.length.toString()} + Lessons",
+    duration: "1.5 Hours",
+    session: "${mustKnow.length.toString()}  Lessons",
     review: "4.5",
     description:
         "This course covers sustainable dairy farming practices, the environmental impacts of dairy farming, waste management ",
     is_favorited: true,
     is_recommented: true,
     lessons: mustKnow,
+  ),
+
+  Courses(
+    id: "8",
+    name: "Essence of Dairying",
+    image:
+        "https://images.unsplash.com/photo-1594731884638-8197c3102d1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1475&q=80",
+    price: "Free",
+    duration: "2 Hours",
+    session: "${theEssence.length.toString()}  Lessons",
+    review: "4.5",
+    description:
+        "This course covers sustainable dairy farming practices, the environmental impacts of dairy farming, waste management, also give a idea about modern dairyfarming",
+    is_favorited: true,
+    is_recommented: true,
+    lessons: theEssence,
+  ),
+
+  Courses(
+    id: "9",
+    name: "Dairy Products",
+    image:
+        "https://images.unsplash.com/photo-1630356090105-808ba2fe97f7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1033&q=80",
+    price: "Free",
+    duration: "2 Hours",
+    session: "${dairyProducts.length.toString()}  Lessons",
+    review: "4.5",
+    description:
+        "This course covers dairy Products, like cheese , yugurt , Butter , etc and making of some of it",
+    is_favorited: true,
+    is_recommented: true,
+    lessons: dairyProducts,
   ),
 ];

@@ -1,3 +1,4 @@
+import 'package:dairyfarm_guide/ads_helper/ads_helper.dart';
 import 'package:dairyfarm_guide/models/categories.dart';
 import 'package:dairyfarm_guide/models/course_details.dart';
 import 'package:dairyfarm_guide/screens/all_lessons.dart';
@@ -9,6 +10,7 @@ import 'package:dairyfarm_guide/widgets/custom_button.dart';
 import 'package:dairyfarm_guide/widgets/custom_image.dart';
 import 'package:dairyfarm_guide/widgets/lesson_item.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:readmore/readmore.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -25,6 +27,26 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
   late MainCategories categoryData;
   late YoutubePlayerController _controller;
 
+  //ads section
+  NativeAd? _nativeAd;
+  bool isNativeAdLoaded = false;
+
+  void loadNativeAd() {
+    _nativeAd = NativeAd(
+      adUnitId: AdHelper.nativeAdUnitId,
+      factoryId: "listTileMedium",
+      listener: NativeAdListener(onAdLoaded: (ad) {
+        setState(() {
+          isNativeAdLoaded = true;
+        });
+      }, onAdFailedToLoad: (ad, error) {
+        _nativeAd!.dispose();
+      }),
+      request: const AdRequest(),
+    );
+    _nativeAd!.load();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -35,6 +57,14 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
         initialVideoId: videoID!,
         flags: const YoutubePlayerFlags(autoPlay: false));
     categoryData = widget.data;
+    loadNativeAd();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _nativeAd!.dispose();
   }
 
   @override
@@ -86,6 +116,17 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
           ),
           getInfo(),
           const Divider(),
+          isNativeAdLoaded
+              ? Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  height: 265,
+                  child: AdWidget(
+                    ad: _nativeAd!,
+                  ),
+                )
+              : const SizedBox(),
           const SizedBox(
             height: 20,
           ),
