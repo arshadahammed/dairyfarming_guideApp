@@ -4,7 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class BottomBarItem extends StatelessWidget {
   const BottomBarItem(this.icon,
-      {this.onTap,
+      {super.key,
+      this.onTap,
       this.color = Colors.grey,
       this.activeColor = primary,
       this.isActive = false,
@@ -23,7 +24,7 @@ class BottomBarItem extends StatelessWidget {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.fastOutSlowIn,
-        padding: EdgeInsets.all(7),
+        padding: const EdgeInsets.all(7),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
           color: bottomBarColor,
@@ -33,12 +34,13 @@ class BottomBarItem extends StatelessWidget {
                 color: shadowColor.withOpacity(0.1),
                 spreadRadius: 2,
                 blurRadius: 2,
-                offset: Offset(0, 0), // changes position of shadow
+                offset: const Offset(0, 0), // changes position of shadow
               ),
           ],
         ),
         child: SvgPicture.asset(
           icon,
+          // ignore: deprecated_member_use
           color: isActive ? activeColor : color,
           width: 23,
           height: 23,

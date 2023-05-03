@@ -4,7 +4,8 @@ import 'package:dairyfarm_guide/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 
 class RecommendItem extends StatelessWidget {
-  RecommendItem({Key? key, required this.data, this.onTap}) : super(key: key);
+  const RecommendItem({Key? key, required this.data, this.onTap})
+      : super(key: key);
   final Courses data;
   final GestureTapCallback? onTap;
 
@@ -13,8 +14,8 @@ class RecommendItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-          margin: EdgeInsets.only(right: 10),
-          padding: EdgeInsets.all(10),
+          margin: const EdgeInsets.only(right: 10),
+          padding: const EdgeInsets.all(10),
           width: 300,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
@@ -24,7 +25,7 @@ class RecommendItem extends StatelessWidget {
                 color: Colors.grey.withOpacity(0.1),
                 spreadRadius: 1,
                 blurRadius: 1,
-                offset: Offset(1, 1), // changes position of shadow
+                offset: const Offset(1, 1), // changes position of shadow
               ),
             ],
           ),
@@ -50,44 +51,44 @@ class RecommendItem extends StatelessWidget {
                         fontSize: 14,
                         fontWeight: FontWeight.w600),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Text(
                     data.price,
-                    style: TextStyle(fontSize: 14, color: textColor),
+                    style: const TextStyle(fontSize: 14, color: textColor),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.schedule_rounded,
                         color: labelColor,
                         size: 14,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 2,
                       ),
                       Text(
                         data.duration,
-                        style: TextStyle(fontSize: 12, color: labelColor),
+                        style: const TextStyle(fontSize: 12, color: labelColor),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
-                      Icon(
+                      const Icon(
                         Icons.star,
                         color: orange,
                         size: 14,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 2,
                       ),
                       Text(
                         data.review,
-                        style: TextStyle(fontSize: 12, color: labelColor),
+                        style: const TextStyle(fontSize: 12, color: labelColor),
                       )
                     ],
                   )

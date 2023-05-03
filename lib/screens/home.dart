@@ -9,7 +9,6 @@ import 'package:dairyfarm_guide/theme/color.dart';
 import 'package:dairyfarm_guide/utils/data.dart';
 import 'package:dairyfarm_guide/widgets/category_box.dart';
 import 'package:dairyfarm_guide/widgets/feature_item.dart';
-import 'package:dairyfarm_guide/widgets/notification_box.dart';
 import 'package:dairyfarm_guide/widgets/recommend_item.dart';
 import 'package:flutter/material.dart';
 import 'package:upgrader/upgrader.dart';
@@ -18,6 +17,7 @@ class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomePageState createState() => _HomePageState();
 }
 
@@ -56,6 +56,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget getAppBar() {
+    // ignore: avoid_unnecessary_containers
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -67,15 +68,15 @@ class _HomePageState extends State<HomePage> {
             children: [
               Text(
                 profile["name"]!,
-                style: TextStyle(
+                style: const TextStyle(
                   color: labelColor,
                   fontSize: 14,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
-              Text("Welcome!",
+              const Text("Welcome!",
                   style: TextStyle(
                     color: textColor,
                     fontWeight: FontWeight.w500,
@@ -98,11 +99,11 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.only(top: 10, bottom: 10),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           getCategories(),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(15, 0, 15, 10),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(15, 0, 15, 10),
             child: Text("Featured",
                 style: TextStyle(
                   color: textColor,
@@ -111,14 +112,14 @@ class _HomePageState extends State<HomePage> {
                 )),
           ),
           getFeature(),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           Container(
-            margin: EdgeInsets.fromLTRB(15, 0, 15, 10),
+            margin: const EdgeInsets.fromLTRB(15, 0, 15, 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: const [
                 Text(
                   "Recommended",
                   style: TextStyle(
@@ -142,7 +143,7 @@ class _HomePageState extends State<HomePage> {
   int selectedCollection = 0;
   getCategories() {
     return SingleChildScrollView(
-      padding: EdgeInsets.fromLTRB(15, 10, 0, 10),
+      padding: const EdgeInsets.fromLTRB(15, 10, 0, 10),
       scrollDirection: Axis.horizontal,
       child: Row(
           children: List.generate(
@@ -187,7 +188,7 @@ class _HomePageState extends State<HomePage> {
 
   getRecommend() {
     return SingleChildScrollView(
-      padding: EdgeInsets.fromLTRB(15, 5, 0, 5),
+      padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
       scrollDirection: Axis.horizontal,
       child: Row(
           children: List.generate(allCourses.length, (index) {

@@ -3,7 +3,6 @@ import 'package:dairyfarm_guide/models/course_details.dart';
 import 'package:dairyfarm_guide/screens/all_lessons.dart';
 import 'package:dairyfarm_guide/screens/youtube_screen.dart';
 import 'package:dairyfarm_guide/theme/color.dart';
-import 'package:dairyfarm_guide/utils/data.dart';
 import 'package:dairyfarm_guide/widgets/bookmark_box.dart';
 import 'package:dairyfarm_guide/widgets/custom_button.dart';
 import 'package:dairyfarm_guide/widgets/custom_image.dart';
@@ -17,6 +16,7 @@ const int maxFailedLoadAttempts = 3;
 
 class CourseDetailPage extends StatefulWidget {
   final Courses data;
+  // ignore: prefer_const_constructors_in_immutables
   CourseDetailPage({super.key, required this.data});
 
   @override
@@ -27,6 +27,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
   late Courses courseData;
+  // ignore: prefer_final_fields
   List<String> _favoriteIds = [];
   bool _isFavorite = false;
 
@@ -100,7 +101,6 @@ class _CourseDetailPageState extends State<CourseDetailPage>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _interstitialAd?.dispose();
     _nativeAd!.dispose();
@@ -119,13 +119,13 @@ class _CourseDetailPageState extends State<CourseDetailPage>
     return AppBar(
       backgroundColor: appBarColor,
       centerTitle: true,
-      title: Text(
+      title: const Text(
         "Detail",
         style: TextStyle(
           color: textColor,
         ),
       ),
-      iconTheme: IconThemeData(color: textColor),
+      iconTheme: const IconThemeData(color: textColor),
       leading: IconButton(
         onPressed: () {
           Navigator.pop(context);
@@ -178,6 +178,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
   }
 
   Widget getTabBar() {
+    // ignore: avoid_unnecessary_containers
     return Container(
       child: TabBar(
           controller: tabController,
@@ -200,6 +201,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
   }
 
   Widget getTabBarPages() {
+    // ignore: sized_box_for_whitespace
     return Container(
       height: 200,
       width: double.infinity,
@@ -208,8 +210,9 @@ class _CourseDetailPageState extends State<CourseDetailPage>
           physics: const NeverScrollableScrollPhysics(),
           children: [
             getLessons(),
+            // ignore: avoid_unnecessary_containers
             Container(
-              child: Center(child: Text("Excersises")),
+              child: const Center(child: Text("Excersises")),
             ),
           ]),
     );
@@ -236,6 +239,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
   }
 
   Widget getInfo() {
+    // ignore: avoid_unnecessary_containers
     return Container(
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -243,7 +247,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Text(
             courseData.name,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 20, fontWeight: FontWeight.w500, color: textColor),
           ),
           BookmarkBox(
@@ -319,7 +323,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
         ),
         Text(
           info,
-          style: TextStyle(color: labelColor),
+          style: const TextStyle(color: labelColor),
         )
       ],
     );
@@ -329,13 +333,13 @@ class _CourseDetailPageState extends State<CourseDetailPage>
     return Container(
       height: 80,
       width: double.infinity,
-      padding: EdgeInsets.fromLTRB(15, 0, 15, 20),
+      padding: const EdgeInsets.fromLTRB(15, 0, 15, 20),
       decoration: BoxDecoration(color: Colors.white, boxShadow: [
         BoxShadow(
           color: shadowColor.withOpacity(.05),
           spreadRadius: 1,
           blurRadius: 1,
-          offset: Offset(0, 0),
+          offset: const Offset(0, 0),
         )
       ]),
       child: Row(
@@ -345,26 +349,26 @@ class _CourseDetailPageState extends State<CourseDetailPage>
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'Price',
                 style: TextStyle(
                     fontSize: 14,
                     color: labelColor,
                     fontWeight: FontWeight.w500),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 3,
               ),
               Text(
                 courseData.price,
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 18,
                     color: textColor,
                     fontWeight: FontWeight.w500),
               ),
             ],
           ),
-          SizedBox(width: 30),
+          const SizedBox(width: 30),
           Expanded(
             child: CustomButton(
               title: 'Go to Course',
@@ -390,15 +394,15 @@ class _CourseDetailPageState extends State<CourseDetailPage>
     List<String> favoriteIds = prefs.getStringList('favoriteIds') ?? [];
     setState(() {
       if (_favoriteIds.contains(widget.data.id)) {
-        print("Id already exist");
+        // print("Id already exist");
         return;
       }
       if (_isFavorite) {
         favoriteIds.add(widget.data.id);
-        print("After added : ${favoriteIds.length}");
+        // print("After added : ${favoriteIds.length}");
       } else {
         favoriteIds.remove(widget.data.id);
-        print("After removed : ${favoriteIds.length}");
+        // print("After removed : ${favoriteIds.length}");
       }
     });
 

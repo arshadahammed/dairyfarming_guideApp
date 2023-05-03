@@ -1,5 +1,4 @@
 import 'package:dairyfarm_guide/screens/account.dart';
-import 'package:dairyfarm_guide/screens/chat.dart';
 import 'package:dairyfarm_guide/screens/explore.dart';
 import 'package:dairyfarm_guide/screens/favourite_list.dart';
 import 'package:dairyfarm_guide/theme/color.dart';
@@ -12,6 +11,7 @@ class RootApp extends StatefulWidget {
   const RootApp({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _RootAppState createState() => _RootAppState();
 }
 
@@ -21,22 +21,22 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
     {
       "icon": "assets/icons/home.svg",
       "active_icon": "assets/icons/home.svg",
-      "page": HomePage(),
+      "page": const HomePage(),
     },
     {
       "icon": "assets/icons/search.svg",
       "active_icon": "assets/icons/search.svg",
-      "page": ExplorePage(),
+      "page": const ExplorePage(),
     },
     {
       "icon": "assets/icons/bookmark.svg",
       "active_icon": "assets/icons/bookmark.svg",
-      "page": FavouriteList(),
+      "page": const FavouriteList(),
     },
     {
       "icon": "assets/icons/profile.svg",
       "active_icon": "assets/icons/profile.svg",
-      "page": AccountPage(),
+      "page": const AccountPage(),
     },
   ];
 
@@ -98,14 +98,14 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
       width: double.infinity,
       decoration: BoxDecoration(
           color: bottomBarColor,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(25), topRight: Radius.circular(25)),
           boxShadow: [
             BoxShadow(
                 color: shadowColor.withOpacity(0.1),
                 blurRadius: 1,
                 spreadRadius: 1,
-                offset: Offset(1, 1))
+                offset: const Offset(1, 1))
           ]),
       child: Padding(
           padding: const EdgeInsets.only(

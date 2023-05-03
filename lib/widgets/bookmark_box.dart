@@ -1,7 +1,6 @@
 import 'package:dairyfarm_guide/theme/color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
 
 class BookmarkBox extends StatelessWidget {
@@ -32,6 +31,7 @@ class BookmarkBox extends StatelessWidget {
             ]),
         child: SvgPicture.asset(
           "assets/icons/bookmark.svg",
+          // ignore: deprecated_member_use
           color: isBookmarked ? Colors.white : primary,
           width: 22,
           height: 22,

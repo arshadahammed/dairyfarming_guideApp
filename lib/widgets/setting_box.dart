@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SettingBox extends StatelessWidget {
-  SettingBox(
+  const SettingBox(
       {Key? key, required this.title, required this.icon, this.color = darker})
       : super(key: key);
+  // ignore: prefer_typing_uninitialized_variables
   final title;
   final String icon;
   final Color color;
@@ -22,7 +23,7 @@ class SettingBox extends StatelessWidget {
             color: shadowColor.withOpacity(0.1),
             spreadRadius: 1,
             blurRadius: 1,
-            offset: Offset(0, 1), // changes position of shadow
+            offset: const Offset(0, 1), // changes position of shadow
           ),
         ],
       ),
@@ -30,11 +31,12 @@ class SettingBox extends StatelessWidget {
         children: [
           SvgPicture.asset(
             icon,
+            // ignore: deprecated_member_use
             color: color,
             width: 22,
             height: 22,
           ),
-          SizedBox(
+          const SizedBox(
             height: 7,
           ),
           Text(

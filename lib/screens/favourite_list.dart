@@ -3,12 +3,9 @@ import 'package:dairyfarm_guide/models/course_details.dart';
 import 'package:dairyfarm_guide/screens/course_details.dart';
 import 'package:dairyfarm_guide/screens/main_screen.dart';
 import 'package:dairyfarm_guide/theme/color.dart';
-import 'package:dairyfarm_guide/utils/data.dart';
-import 'package:dairyfarm_guide/widgets/category_items.dart';
-import 'package:dairyfarm_guide/widgets/courses_item.dart';
+
 import 'package:dairyfarm_guide/widgets/recommend_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -178,9 +175,10 @@ class _FavouriteListState extends State<FavouriteList> {
             future: _getItemById(favoriteId),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                print(_favoriteIds);
+                //  print(_favoriteIds);
+                // ignore: unused_local_variable
                 final Courses course = snapshot.data as Courses;
-                print(favoriteId.length);
+                //  print(favoriteId.length);
                 return Padding(
                   padding: const EdgeInsets.only(top: 5, bottom: 5),
                   child: RecommendItem(

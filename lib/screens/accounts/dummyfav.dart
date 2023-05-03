@@ -1,6 +1,5 @@
 import 'package:dairyfarm_guide/models/course_details.dart';
 import 'package:dairyfarm_guide/screens/course_details.dart';
-import 'package:dairyfarm_guide/screens/main_screen.dart';
 import 'package:dairyfarm_guide/theme/color.dart';
 import 'package:dairyfarm_guide/utils/data.dart';
 import 'package:dairyfarm_guide/widgets/category_items.dart';
@@ -24,15 +23,16 @@ class _FavouriteList2State extends State<FavouriteList2> {
   Future<void> _getFavorites() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     _favoriteIds = prefs.getStringList('favoriteIds') ?? [];
-    print("_favoriteIds length = ${_favoriteIds.length}");
+    //print("_favoriteIds length = ${_favoriteIds.length}");
     setState(() {
       favoriteCourses = allCourses
           .where((course) => _favoriteIds.contains(course.id))
           .toList();
-      print("_favoriteIds length = ${favoriteCourses.length}");
+      //print("_favoriteIds length = ${favoriteCourses.length}");
     });
   }
 
+  // ignore: unused_element
   Future<void> _clearFavorites() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     // setState(() {
@@ -74,6 +74,7 @@ class _FavouriteList2State extends State<FavouriteList2> {
   }
 
   getAppBar() {
+    // ignore: avoid_unnecessary_containers
     return Container(
       child: Row(
         children: const [
@@ -96,7 +97,7 @@ class _FavouriteList2State extends State<FavouriteList2> {
           Expanded(
             child: Container(
               height: 40,
-              padding: EdgeInsets.only(bottom: 3),
+              padding: const EdgeInsets.only(bottom: 3),
               decoration: BoxDecoration(
                   color: textBoxColor,
                   border: Border.all(color: textBoxColor),
@@ -106,7 +107,7 @@ class _FavouriteList2State extends State<FavouriteList2> {
                       color: shadowColor.withOpacity(0.5),
                       spreadRadius: .5,
                       blurRadius: .5,
-                      offset: Offset(0, 0),
+                      offset: const Offset(0, 0),
                     ),
                   ]),
               child: const TextField(
@@ -125,17 +126,18 @@ class _FavouriteList2State extends State<FavouriteList2> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Container(
-            padding: EdgeInsets.all(5),
+            padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(
               color: primary,
               borderRadius: BorderRadius.circular(10),
             ),
             child: SvgPicture.asset(
               "assets/icons/filter.svg",
+              // ignore: deprecated_member_use
               color: Colors.white,
             ),
           )

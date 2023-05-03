@@ -101,13 +101,13 @@ class _YoutubeVideoScreenState extends State<YoutubeVideoScreen> {
       appBar: AppBar(
         backgroundColor: appBarColor,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "Video",
           style: TextStyle(
             color: textColor,
           ),
         ),
-        iconTheme: IconThemeData(color: textColor),
+        iconTheme: const IconThemeData(color: textColor),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);

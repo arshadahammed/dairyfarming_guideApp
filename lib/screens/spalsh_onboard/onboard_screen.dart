@@ -1,7 +1,5 @@
 import 'package:dairyfarm_guide/ads_helper/app_open_admanager.dart';
-import 'package:dairyfarm_guide/screens/home.dart';
 import 'package:dairyfarm_guide/screens/main_screen.dart';
-import 'package:dairyfarm_guide/screens/root_app.dart';
 import 'package:dairyfarm_guide/utils/constant.dart';
 import 'package:flutter/material.dart';
 

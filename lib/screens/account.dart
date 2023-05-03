@@ -1,6 +1,5 @@
 import 'package:dairyfarm_guide/ads_helper/ads_helper.dart';
 import 'package:dairyfarm_guide/screens/accounts/contact_us.dart';
-import 'package:dairyfarm_guide/screens/accounts/dummyfav.dart';
 import 'package:dairyfarm_guide/screens/accounts/privacy_policy.dart';
 import 'package:dairyfarm_guide/screens/favourite_list.dart';
 import 'package:dairyfarm_guide/theme/color.dart';
@@ -18,6 +17,7 @@ class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _AccountPageState createState() => _AccountPageState();
 }
 
@@ -61,14 +61,12 @@ class _AccountPageState extends State<AccountPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _createInterstitialAd();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _interstitialAd?.dispose();
   }
@@ -89,23 +87,21 @@ class _AccountPageState extends State<AccountPage> {
   }
 
   getHeader() {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            "Account",
-            style: TextStyle(
-                color: textColor, fontSize: 24, fontWeight: FontWeight.w600),
-          ),
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: const [
+        Text(
+          "Account",
+          style: TextStyle(
+              color: textColor, fontSize: 24, fontWeight: FontWeight.w600),
+        ),
+      ],
     );
   }
 
   Widget getBody() {
     return SingleChildScrollView(
-      padding: EdgeInsets.only(left: 15, right: 15),
+      padding: const EdgeInsets.only(left: 15, right: 15),
       child: Column(
         children: [
           Column(
@@ -116,22 +112,24 @@ class _AccountPageState extends State<AccountPage> {
                 height: 70,
                 radius: 20,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Text(
                 profile["name"]!,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
+          // ignore: avoid_unnecessary_containers
           Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: const [
                 Expanded(
                     child: SettingBox(
                   title: "9 courses",
@@ -156,7 +154,7 @@ class _AccountPageState extends State<AccountPage> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Container(
@@ -169,7 +167,7 @@ class _AccountPageState extends State<AccountPage> {
                   color: shadowColor.withOpacity(0.1),
                   spreadRadius: 1,
                   blurRadius: 1,
-                  offset: Offset(0, 1), // changes position of shadow
+                  offset: const Offset(0, 1), // changes position of shadow
                 ),
               ],
             ),
@@ -205,13 +203,13 @@ class _AccountPageState extends State<AccountPage> {
                 leadingIcon: "assets/icons/bookmark.svg",
                 bgIconColor: primary,
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => FavouriteList()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const FavouriteList()));
                 },
               ),
             ]),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Container(
@@ -224,7 +222,7 @@ class _AccountPageState extends State<AccountPage> {
                   color: shadowColor.withOpacity(0.1),
                   spreadRadius: 1,
                   blurRadius: 1,
-                  offset: Offset(0, 1), // changes position of shadow
+                  offset: const Offset(0, 1), // changes position of shadow
                 ),
               ],
             ),
@@ -234,8 +232,8 @@ class _AccountPageState extends State<AccountPage> {
                 leadingIcon: "assets/icons/contact.svg",
                 bgIconColor: purple,
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Contactus()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const Contactus()));
                 },
               ),
               Padding(
@@ -250,13 +248,13 @@ class _AccountPageState extends State<AccountPage> {
                 leadingIcon: "assets/icons/shield.svg",
                 bgIconColor: orange,
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => PrivacyPolicy()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const PrivacyPolicy()));
                 },
               ),
             ]),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Container(
@@ -269,7 +267,7 @@ class _AccountPageState extends State<AccountPage> {
                   color: shadowColor.withOpacity(0.1),
                   spreadRadius: 1,
                   blurRadius: 1,
-                  offset: Offset(0, 1), // changes position of shadow
+                  offset: const Offset(0, 1), // changes position of shadow
                 ),
               ],
             ),

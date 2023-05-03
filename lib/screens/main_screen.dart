@@ -1,14 +1,11 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:dairyfarm_guide/ads_helper/app_open_admanager.dart';
 import 'package:dairyfarm_guide/screens/account.dart';
-import 'package:dairyfarm_guide/screens/accounts/dummyfav.dart';
 import 'package:dairyfarm_guide/screens/explore.dart';
 import 'package:dairyfarm_guide/screens/favourite_list.dart';
 import 'package:dairyfarm_guide/screens/home.dart';
 import 'package:dairyfarm_guide/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

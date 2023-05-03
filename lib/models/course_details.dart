@@ -2,6 +2,7 @@ import 'package:dairyfarm_guide/models/lessons.dart';
 
 class Courses {
   final String id, name, image, price, duration, session, review, description;
+  // ignore: non_constant_identifier_names
   bool is_favorited, is_recommented;
   final List<Lessons> lessons;
   Courses({
@@ -13,7 +14,9 @@ class Courses {
     required this.session,
     required this.review,
     required this.description,
+    // ignore: non_constant_identifier_names
     required this.is_favorited,
+    // ignore: non_constant_identifier_names
     required this.is_recommented,
     required this.lessons,
   });

@@ -28,26 +28,27 @@ class SettingItem extends StatelessWidget {
           children: leadingIcon != null
               ? [
                   Container(
-                    padding: EdgeInsets.all(6),
+                    padding: const EdgeInsets.all(6),
                     decoration: BoxDecoration(
                         color: bgIconColor, shape: BoxShape.circle),
                     child: SvgPicture.asset(
                       leadingIcon!,
+                      // ignore: deprecated_member_use
                       color: leadingIconColor,
                       width: 22,
                       height: 22,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Expanded(
                     child: Text(
                       title,
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                     ),
                   ),
-                  Icon(
+                  const Icon(
                     Icons.arrow_forward_ios,
                     color: Colors.grey,
                     size: 17,
@@ -57,10 +58,10 @@ class SettingItem extends StatelessWidget {
                   Expanded(
                     child: Text(
                       title,
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                     ),
                   ),
-                  Icon(
+                  const Icon(
                     Icons.arrow_forward_ios,
                     color: darker,
                     size: 17,

@@ -60,13 +60,13 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
       appBar: AppBar(
         backgroundColor: appBarColor,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "Privacy Policy",
           style: TextStyle(
             color: textColor,
           ),
         ),
-        iconTheme: IconThemeData(color: textColor),
+        iconTheme: const IconThemeData(color: textColor),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);

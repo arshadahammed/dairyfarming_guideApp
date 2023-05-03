@@ -4,8 +4,6 @@ import 'package:dairyfarm_guide/screens/youtube_screen.dart';
 import 'package:dairyfarm_guide/theme/color.dart';
 import 'package:dairyfarm_guide/widgets/lesson_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AllLessons extends StatefulWidget {
@@ -68,13 +66,13 @@ class _AllLessonsState extends State<AllLessons> {
         appBar: AppBar(
           backgroundColor: appBarColor,
           centerTitle: true,
-          title: Text(
+          title: const Text(
             "All lessons",
             style: TextStyle(
               color: textColor,
             ),
           ),
-          iconTheme: IconThemeData(color: textColor),
+          iconTheme: const IconThemeData(color: textColor),
           leading: IconButton(
             onPressed: () {
               Navigator.pop(context);

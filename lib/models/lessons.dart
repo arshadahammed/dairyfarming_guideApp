@@ -1,8 +1,10 @@
 class Lessons {
+  // ignore: non_constant_identifier_names
   final String name, duration, video_url;
   Lessons({
     required this.name,
     required this.duration,
+    // ignore: non_constant_identifier_names
     required this.video_url,
   });
 }

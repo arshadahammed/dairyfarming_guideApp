@@ -50,8 +50,10 @@ class _ExplorePageState extends State<ExplorePage> {
     return index;
   }
 
+  // ignore: unused_field
   List<String> _favoriteIds = [];
   //getfav
+  // ignore: unused_element
   Future<void> _getFavorites() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -94,6 +96,7 @@ class _ExplorePageState extends State<ExplorePage> {
   }
 
   getAppBar() {
+    // ignore: avoid_unnecessary_containers
     return Container(
       child: Row(
         children: const [
@@ -116,7 +119,7 @@ class _ExplorePageState extends State<ExplorePage> {
           Expanded(
             child: Container(
               height: 40,
-              padding: EdgeInsets.only(bottom: 3),
+              padding: const EdgeInsets.only(bottom: 3),
               decoration: BoxDecoration(
                   color: textBoxColor,
                   border: Border.all(color: textBoxColor),
@@ -126,7 +129,7 @@ class _ExplorePageState extends State<ExplorePage> {
                       color: shadowColor.withOpacity(0.5),
                       spreadRadius: .5,
                       blurRadius: .5,
-                      offset: Offset(0, 0),
+                      offset: const Offset(0, 0),
                     ),
                   ]),
               child: const TextField(
@@ -145,17 +148,18 @@ class _ExplorePageState extends State<ExplorePage> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Container(
-            padding: EdgeInsets.all(5),
+            padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(
               color: primary,
               borderRadius: BorderRadius.circular(10),
             ),
             child: SvgPicture.asset(
               "assets/icons/filter.svg",
+              // ignore: deprecated_member_use
               color: Colors.white,
             ),
           )

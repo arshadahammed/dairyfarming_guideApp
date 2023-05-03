@@ -1,14 +1,10 @@
 import 'package:dairyfarm_guide/ads_helper/ads_helper.dart';
 import 'package:dairyfarm_guide/models/categories.dart';
-import 'package:dairyfarm_guide/models/course_details.dart';
-import 'package:dairyfarm_guide/screens/all_lessons.dart';
-import 'package:dairyfarm_guide/screens/youtube_screen.dart';
+
 import 'package:dairyfarm_guide/theme/color.dart';
-import 'package:dairyfarm_guide/utils/data.dart';
-import 'package:dairyfarm_guide/widgets/bookmark_box.dart';
-import 'package:dairyfarm_guide/widgets/custom_button.dart';
+
 import 'package:dairyfarm_guide/widgets/custom_image.dart';
-import 'package:dairyfarm_guide/widgets/lesson_item.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:readmore/readmore.dart';
@@ -16,7 +12,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class CategoryDetailsPage extends StatefulWidget {
   final MainCategories data;
-  CategoryDetailsPage({super.key, required this.data});
+  const CategoryDetailsPage({super.key, required this.data});
 
   @override
   State<CategoryDetailsPage> createState() => _CategoryDetailsPageState();
@@ -62,7 +58,6 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _nativeAd!.dispose();
   }
@@ -80,13 +75,13 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
     return AppBar(
       backgroundColor: appBarColor,
       centerTitle: true,
-      title: Text(
+      title: const Text(
         "Detail",
         style: TextStyle(
           color: textColor,
         ),
       ),
-      iconTheme: IconThemeData(color: textColor),
+      iconTheme: const IconThemeData(color: textColor),
       leading: IconButton(
         onPressed: () {
           Navigator.pop(context);
@@ -213,6 +208,7 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
   // }
 
   Widget getInfo() {
+    // ignore: avoid_unnecessary_containers
     return Container(
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -220,7 +216,7 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Text(
             categoryData.name,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 20, fontWeight: FontWeight.w500, color: textColor),
           ),
           // BookmarkBox(
@@ -275,7 +271,7 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
         ),
         Text(
           info,
-          style: TextStyle(color: labelColor),
+          style: const TextStyle(color: labelColor),
         )
       ],
     );

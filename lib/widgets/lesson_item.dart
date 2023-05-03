@@ -1,8 +1,6 @@
 import 'package:dairyfarm_guide/models/lessons.dart';
 import 'package:dairyfarm_guide/theme/color.dart';
 import 'package:dairyfarm_guide/widgets/custom_image.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -46,7 +44,7 @@ class _LessonItemState extends State<LessonItem> {
               color: shadowColor.withOpacity(0.07),
               spreadRadius: 1,
               blurRadius: 1,
-              offset: Offset(1, 1),
+              offset: const Offset(1, 1),
             ),
           ]),
       child: Row(
@@ -59,7 +57,7 @@ class _LessonItemState extends State<LessonItem> {
             height: 70,
             width: 70,
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Expanded(
@@ -68,25 +66,25 @@ class _LessonItemState extends State<LessonItem> {
               children: [
                 Text(
                   widget.data.name,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: textColor,
                       fontSize: 14,
                       fontWeight: FontWeight.w500),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.schedule_outlined,
                       color: labelColor,
                       size: 18,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     Text(
                       widget.data.duration,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: labelColor,
                         fontSize: 13,
                       ),
@@ -96,7 +94,7 @@ class _LessonItemState extends State<LessonItem> {
               ],
             ),
           ),
-          Icon(
+          const Icon(
             Icons.arrow_forward_ios_rounded,
             color: labelColor,
             size: 15,

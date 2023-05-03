@@ -1,6 +1,4 @@
 import 'package:dairyfarm_guide/theme/color.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -46,7 +44,7 @@ class CustomButton extends StatelessWidget {
                     color: shadowColor.withOpacity(0.1),
                     spreadRadius: 1,
                     blurRadius: 1,
-                    offset: Offset(0, 1))
+                    offset: const Offset(0, 1))
               ]),
           width: width,
           height: height,
@@ -84,7 +82,7 @@ class CustomButton extends StatelessWidget {
                                 ? textcolor.withOpacity(0.3)
                                 : textcolor,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           Text(

@@ -51,13 +51,13 @@ class _ContactusState extends State<Contactus> {
       appBar: AppBar(
         backgroundColor: appBarColor,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "Contact",
           style: TextStyle(
             color: textColor,
           ),
         ),
-        iconTheme: IconThemeData(color: textColor),
+        iconTheme: const IconThemeData(color: textColor),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);

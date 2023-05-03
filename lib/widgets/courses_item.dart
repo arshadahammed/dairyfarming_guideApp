@@ -4,9 +4,7 @@ import 'package:dairyfarm_guide/theme/color.dart';
 import 'package:dairyfarm_guide/widgets/bookmark_box.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CourseItem extends StatefulWidget {
@@ -36,11 +34,12 @@ class _CourseItemState extends State<CourseItem> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: no_leading_underscores_for_local_identifiers
     bool _isItemFavorite = _favoriteIds.contains(widget.data.id);
     return Container(
       width: 200,
       height: 290,
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.only(bottom: 5),
       decoration: BoxDecoration(
           color: Colors.white,
@@ -50,11 +49,12 @@ class _CourseItemState extends State<CourseItem> {
               color: shadowColor.withOpacity(.1),
               blurRadius: 1,
               spreadRadius: 1,
-              offset: Offset(1, 1),
+              offset: const Offset(1, 1),
             )
           ]),
       child: Stack(
         children: [
+          // ignore: sized_box_for_whitespace
           Container(
             width: double.infinity,
             height: 200,
@@ -80,6 +80,7 @@ class _CourseItemState extends State<CourseItem> {
           ),
           Positioned(
               top: 215,
+              // ignore: sized_box_for_whitespace
               child: Container(
                 width: MediaQuery.of(context).size.width - 60,
                 child: Column(

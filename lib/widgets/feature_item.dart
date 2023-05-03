@@ -3,10 +3,8 @@ import 'package:dairyfarm_guide/models/course_details.dart';
 import 'package:dairyfarm_guide/theme/color.dart';
 import 'package:flutter/material.dart';
 
-import 'custom_image.dart';
-
 class FeatureItem extends StatelessWidget {
-  FeatureItem(
+  const FeatureItem(
       {Key? key,
       required this.data,
       this.width = 280,
@@ -25,8 +23,8 @@ class FeatureItem extends StatelessWidget {
       child: Container(
         width: width,
         height: height,
-        padding: EdgeInsets.all(10),
-        margin: EdgeInsets.only(bottom: 5, top: 5),
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.only(bottom: 5, top: 5),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
@@ -35,7 +33,7 @@ class FeatureItem extends StatelessWidget {
               color: shadowColor.withOpacity(0.1),
               spreadRadius: 1,
               blurRadius: 1,
-              offset: Offset(1, 1), // changes position of shadow
+              offset: const Offset(1, 1), // changes position of shadow
             ),
           ],
         ),
@@ -49,6 +47,7 @@ class FeatureItem extends StatelessWidget {
             // ),
             Hero(
                 tag: data.id.toString() + data.image,
+                // ignore: sized_box_for_whitespace
                 child: Container(
                   width: double.infinity,
                   height: 190,
@@ -66,7 +65,7 @@ class FeatureItem extends StatelessWidget {
               top: 170,
               right: 15,
               child: Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: primary,
                   borderRadius: BorderRadius.circular(20),
@@ -75,13 +74,13 @@ class FeatureItem extends StatelessWidget {
                       color: shadowColor.withOpacity(0.05),
                       spreadRadius: 1,
                       blurRadius: 1,
-                      offset: Offset(0, 0),
+                      offset: const Offset(0, 0),
                     ),
                   ],
                 ),
                 child: Text(
                   data.price,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white, fontWeight: FontWeight.w500),
                 ),
               ),
@@ -90,7 +89,7 @@ class FeatureItem extends StatelessWidget {
               top: 210,
               child: Container(
                 width: width - 20,
-                padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -98,12 +97,12 @@ class FeatureItem extends StatelessWidget {
                       data.name,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 17,
                           color: textColor,
                           fontWeight: FontWeight.w600),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(
@@ -111,12 +110,12 @@ class FeatureItem extends StatelessWidget {
                       children: [
                         getAttribute(Icons.play_circle_outlined, labelColor,
                             data.session),
-                        SizedBox(
+                        const SizedBox(
                           width: 12,
                         ),
                         getAttribute(
                             Icons.schedule_rounded, labelColor, data.duration),
-                        SizedBox(
+                        const SizedBox(
                           width: 12,
                         ),
                         getAttribute(Icons.star, yellow, data.review),
@@ -140,14 +139,14 @@ class FeatureItem extends StatelessWidget {
           size: 18,
           color: color,
         ),
-        SizedBox(
+        const SizedBox(
           width: 3,
         ),
         Text(
           info,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(color: labelColor, fontSize: 13),
+          style: const TextStyle(color: labelColor, fontSize: 13),
         ),
       ],
     );

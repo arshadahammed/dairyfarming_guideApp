@@ -1,10 +1,9 @@
 import 'package:dairyfarm_guide/theme/color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CategoryItem extends StatelessWidget {
+  // ignore: prefer_typing_uninitialized_variables
   final data;
   final Color activeColor;
   final Color bgColor;
@@ -42,6 +41,7 @@ class CategoryItem extends StatelessWidget {
           children: [
             SvgPicture.asset(
               data["icon"],
+              // ignore: deprecated_member_use
               color: isActive ? Colors.white : darker,
               width: 16,
               height: 16,
